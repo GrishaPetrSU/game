@@ -8,7 +8,7 @@ using namespace sf;
 
 class Entity {
 public:
-	enum { left, right, up, down, stay} state;// тип перечислени€ - состо€ние объекта
+	enum {left, right, up, down, stay} state;// тип перечислени€ - состо€ние объекта
 	float dx, dy, x, y, speed, moveTimer;//добавили переменную таймер дл€ будущих целей
 	int w, h, health; //переменна€ УhealthФ, хран€ща€ жизни игрока
 	bool life; //переменна€ УlifeФ жизнь, логическа€
@@ -18,11 +18,14 @@ public:
 	std::string name;//враги могут быть разные, врагов можно различать по именам
 
 	Entity(Image &image, float X, float Y, int W, int H, std::string Name){
-		x = X; y = Y; //координата по€влени€ спрайта
-		w = W; h = H; 
+		x = X;
+		y = Y; //координата по€влени€ спрайта
+		w = W;
+		h = H; 
 		name = Name; 
 		moveTimer = 0;
-		dx = 0; dy = 0; 
+		dx = 0;
+		dy = 0; 
 		speed = 0;
 
 		CurrentFrame = 0;

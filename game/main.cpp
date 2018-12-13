@@ -54,6 +54,7 @@ FloatRect getRect(){//метод получения прямоугольника. его коорд, размеры (шир,вы
 class Player :public Entity {
 public:
 	int playerScore;//эта переменная может быть только у игрока
+	int playerCamen, camen; //счетчик драгоценностей
 
 	Player(Image &image, float X, float Y, int W, int H, std::string Name) :Entity(image, X, Y, W, H, Name){
 		playerScore = 0; 
@@ -102,6 +103,10 @@ void checkCollisionWithMap(float Dx, float Dy)	{
 				if (TileMap[i][j] == 'h') {
 					health += 20;//если взяли сердечко
 					TileMap[i][j] = ' ';//убрали сердечко
+				}
+				if (TileMap[i][j] == 'c') {
+					camen+=1;
+					TileMap[i][j] = ' ';
 				}
 
 			}
@@ -260,7 +265,7 @@ void checkCollisionWithMap(float Dx, float Dy)//ф-ция проверки столкновений с ка
 };//класс Enemy закрыт
 
 //////////////////////sozdanie HardEnemy//////////
-class Enemy :public Entity{
+class HardEnemy :public Entity{
 public:
 	int direction;//направление движения врага
 	Enemy(Image &image, float X, float Y, int W, int H, std::string Name) :Entity(image, X, Y, W, H, Name){
@@ -547,9 +552,11 @@ for (int i = 0; i < HEIGHT_MAP; i++)
 
 		//объявили переменную здоровья и времени
 		std::ostringstream playerHealthString, gameTimeString;
+		std::ostringstream playerCamenString;
 
 		playerHealthString << p.health; gameTimeString << gameTime;//формируем строку
-		text.setString("Здоровье: " + playerHealthString.str() + "\nВремя игры: " + gameTimeString.str());//задаем строку тексту
+		playerCamenString << p.camen;
+		text.setString("Здоровье: " + playerHealthString.str() + "\nВремя игры: " + gameTimeString.str()+ "\nСобрано камней: " + playerCamenString.str());//задаем строку тексту
 		text.setPosition(50, 50);//задаем позицию текста
 		window.draw(text);//рисуем этот текст
 

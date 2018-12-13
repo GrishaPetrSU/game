@@ -183,6 +183,7 @@ public:
 			//через генератор случайных чисел
 			speed = 0.1;//даем скорость.этот объект всегда двигается
 			dx = speed;
+			health = 100;
 		}
 	}
 
@@ -277,6 +278,7 @@ public:
 			//через генератор случайных чисел
 			speed = 0.1;//даем скорость.этот объект всегда двигается
 			dx = speed;
+			health = 100;
 		}
 	}
 
@@ -492,7 +494,7 @@ while (window.isOpen())
 			{
 				if (event.key.code == sf::Keyboard::P)
 				{
-		Bullets.push_back(new Bullet(BulletImage, p.x, p.y, 16, 16, "Bullet", p.state));
+					Bullets.push_back(new Bullet(BulletImage, p.x, p.y, 16, 16, "Bullet", p.state));
 				}
 			}
 		}
@@ -513,13 +515,21 @@ while (window.isOpen())
 		}
 
 		//Проверяем список на наличие "мертвых" пуль и удаляем их
-for (it = Bullets.begin(); it != Bullets.end(); )//говорим что проходимся от начала до конца
-	{// если этот объект мертв, то удаляем его
+		for (it = Bullets.begin(); it != Bullets.end();)//говорим что проходимся от начала до конца
+		{// если этот объект мертв, то удаляем его
 		if ((*it)-> life == false)	{ it = Bullets.erase(it); } 
 			else  it++;//и идем курсором (итератором) к след объекту.		
-	}
+		}
 
-
+/*		ОНО НЕ РАБОТАЕТ, НУЖНО ЧТО-ТО СДЕЛАТЬ)0)1
+		if ((*it)-> life == true)
+		for (it = enemies.begin(); it != enemies.end();)//говорим что проходимся от начала до конца
+				{
+			if ((*it)->getRect().intersects(enemies.getRect())){
+				enemies.health -= 10;
+			}
+		}
+*/
 	//Проверка пересечения игрока с врагами
 	//Если пересечение произошло, то "health = 0", игрок обездвижевается и 
 	//выводится сообщение "you are lose"

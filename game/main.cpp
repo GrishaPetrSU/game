@@ -576,6 +576,22 @@ for (int i = 0; i < HEIGHT_MAP; i++)
 				window.draw((*it)->sprite); //рисуем объекты
 		}
 
+
+
+		if (p.life == false && gameTime > 0){
+			Image heroimage; //создаем объект Image (изображение)
+			heroimage.loadFromFile("images/game_over.png");//загружаем в него файл
+
+		Texture herotexture;//создаем объект Texture (текстура)
+		herotexture.loadFromImage(heroimage);//передаем в него объект Image (изображения)
+
+		Sprite herosprite;//создаем объект Sprite(спрайт)
+		herosprite.setTexture(herotexture);//передаём в него объект Texture (текстуры)
+		herosprite.setPosition(400, 320);//задаем начальные координаты появления спрайта
+		window.clear(); //Очищаем экран
+		window.draw(herosprite);//рисуем объект
+		}
+
 		window.display();
 	}
 	return 0;

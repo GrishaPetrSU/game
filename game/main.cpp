@@ -38,13 +38,17 @@ public:
 		sprite.setTexture(texture); //заливаем спрайт текстурой
 	}
 
-FloatRect getRect(){//метод получени€ пр€моугольника. его коорд, размеры (шир,высот).
-	FloatRect FR(x, y, w, h); // переменна€ FR типа FloatRect
-	return FR;
+	FloatRect getRect(){
+		return FloatRect(x, y, w, h);
+	}
+
+//FloatRect getRect(){//метод получени€ пр€моугольника. его коорд, размеры (шир,высот).
+//	FloatRect FR(x, y, w, h); // переменна€ FR типа FloatRect
+//	return FR;
 	//return FloatRect(x, y, w, h);
 	//“ип данных (класс) "sf::FloatRect" позвол€ет хранить четыре координаты пр€моугольника//в нашей игре это координаты текущего расположени€ тайла на карте
 	//далее это позволит спросить, есть ли ещЄ какой-либо тайл на этом месте //эта ф-ци€ нужна дл€ проверки пересечений 
-	}
+//	}
 	virtual void update(float time) = 0;
 };
 
@@ -355,6 +359,8 @@ void menu(RenderWindow & window) {
 	////////////////////////////////////////////////////
 }
 
+
+
 //рестартыч игры
 bool isGameStart() {
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
@@ -370,15 +376,23 @@ bool isGameStart() {
 	SoundBuffer shootBuffer;//создаЄм буфер дл€ звука
 	shootBuffer.loadFromFile("audio/shoot.ogg");//загружаем в него звук
 	Sound shoot(shootBuffer);//создаем звук и загружаем в него звук из буфера
+	shoot.setVolume(20);
 
-	SoundBuffer stepsBuffer;//создаЄм буфер дл€ звука
-	stepsBuffer.loadFromFile("audio/steps.ogg");//загружаем в него звук
-	Sound steps(stepsBuffer);//создаем звук и загружаем в него звук из буфера
+	SoundBuffer g_oBuffer;//создаЄм буфер дл€ звука
+	g_oBuffer.loadFromFile("audio/g_o.ogg");//загружаем в него звук
+	Sound g_o(g_oBuffer);//создаем звук и загружаем в него звук из буфера
+	g_o.setVolume(20);
 
 	Music music;//создаем объект музыки
 	music.openFromFile("audio/music.ogg");//загружаем файл
+	music.setVolume(30.f);
 	music.play();//воспроизводим музыку
 	music.setLoop(true);
+
+	//steps sounds
+	SoundBuffer stepsBuffer;//создаЄм буфер дл€ звука
+	stepsBuffer.loadFromFile("audio/steps.ogg");//загружаем в него звук
+	Sound steps(stepsBuffer);//создаем звук и загружаем в него звук из буфера
 
 	Image map_image;//объект изображени€ дл€ карты
 	map_image.loadFromFile("images/map.png");//загружаем файл дл€ карты
@@ -402,6 +416,7 @@ bool isGameStart() {
 
 	Player p(heroImage, 100, 170, 96, 96, "Player1");//объект класса игрока
 
+	std::list<Entity*>  entities;
 	std::list<Entity*>  enemies; //список врагов
 	std::list<Entity*>  Bullets; //список пуль
 	std::list<Entity*>::iterator it; //итератор чтобы проходить по элементам списка
@@ -457,7 +472,9 @@ while (window.isOpen())
 
 		p.update(time); //оживл€ем объект УpФ класса УPlayerФ 
 
-		for (it = enemies.begin(); it != enemies.end();)//говорим что проходимс€ от начала до конца
+
+
+		for (it = entities.begin(); it != entities.end();)//говорим что проходимс€ от начала до конца
 		{
 			Entity *b = *it;//дл€ удобства, чтобы не писать (*it)->
 			b->update(time);//вызываем ф-цию update дл€ всех объектов (по сути дл€ тех, кто жив)
@@ -507,7 +524,10 @@ while (window.isOpen())
 				{
 					p.health = 0;
 					std::cout << "you are lose";
-					menu(window);
+					music.setVolume(0);
+					g_o.setVolume(80);
+					g_o.play();
+					//menu(window);
 				}
 			}
 		}

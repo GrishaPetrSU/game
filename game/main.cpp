@@ -41,14 +41,11 @@ public:
 FloatRect getRect(){//метод получения прямоугольника. его коорд, размеры (шир,высот).
 	FloatRect FR(x, y, w, h); // переменная FR типа FloatRect
 	return FR;
-	//Тип данных (класс) "sf::FloatRect" позволяет хранить четыре координаты прямоугольника
-	//в нашей игре это координаты текущего расположения тайла на карте
-	//далее это позволит спросить, есть ли ещё какой-либо тайл на этом месте 
-	//эта ф-ция нужна для проверки пересечений 
+	//return FloatRect(x, y, w, h);
+	//Тип данных (класс) "sf::FloatRect" позволяет хранить четыре координаты прямоугольника//в нашей игре это координаты текущего расположения тайла на карте
+	//далее это позволит спросить, есть ли ещё какой-либо тайл на этом месте //эта ф-ция нужна для проверки пересечений 
 	}
-
 	virtual void update(float time) = 0;
-
 };
 
 ////////////////////////////КЛАСС ИГРОКА////////////////////////
@@ -254,7 +251,7 @@ void checkCollisionWithMap(float Dx, float Dy)//ф-ция проверки столкновений с ка
 
 		sprite.setPosition(x, y); //спрайт в позиции (x, y).
 
-		if (health <= 0){ life = false; }//если жизней меньше 0, либо равно 0, то умираем
+		if (health <= 0){ life = false; }//если жизней меньше 0, либо равно 0, то умираем		
 		}
 		}
 	}
@@ -317,8 +314,8 @@ void menu(RenderWindow & window) {
 	menuTexture1.loadFromFile("images/new_game.png");
 	menuTexture2.loadFromFile("images/about_game.png");
 	menuTexture3.loadFromFile("images/exit.png");
-	aboutTexture.loadFromFile("images/about.png");
-	menuBackground.loadFromFile("images/menu.jpg");
+	aboutTexture.loadFromFile("images/verdont.png");
+	menuBackground.loadFromFile("images/menu.png");
 	Sprite menu1(menuTexture1), menu2(menuTexture2), menu3(menuTexture3), about(aboutTexture), menuBg(menuBackground);
 	bool isMenu = 1;
 	int menuNum = 0;
@@ -455,8 +452,31 @@ while (window.isOpen())
 			}
 		}
 
-
 		p.update(time); //оживляем объект “p” класса “Player” 
+
+		for (it = enemies.begin(); it != enemies.end();)//говорим что проходимся от начала до конца
+		{
+			Entity *b = *it;//для удобства, чтобы не писать (*it)->
+			b->update(time);//вызываем ф-цию update для всех объектов (по сути для тех, кто жив)
+			if (b->life == false)	{ it = enemies.erase(it); delete b; }// если этот объект мертв, то удаляем его
+			else it++;//и идем курсором (итератором) к след объекту. так делаем со всеми объектами списка
+		}
+
+		for (it = enemies.begin(); it != enemies.end(); it++)//проходимся по эл-там списка
+		{
+			if ((*it)->getRect().intersects(p.getRect()))//если прямоугольник спрайта объекта пересекается с игроком
+			{
+				if ((*it)->name == "EasyEnemy"){//и при этом имя объекта EasyEnemy,то..
+					if (p.dy>0) { (*it)->dx = 0; p.dy = -0.2; (*it)->health = 0; }
+					//если прыгнули на врага,то даем врагу скорость 0,отпрыгиваем от него чуть вверх,даем ему здоровье 0
+					else {
+					p.health -= 5;	//иначе враг подошел к нам сбоку и нанес урон
+					}
+				}
+			}
+		}
+
+
 
 		//оживляем врагов
 		for (it = enemies.begin(); it != enemies.end(); it++)
@@ -477,17 +497,6 @@ while (window.isOpen())
 			else  it++;//и идем курсором (итератором) к след объекту.		
 	}
 
-
-//		//ОНО НЕ РАБОТАЕТ, НУЖНО ЧТО-ТО СДЕЛАТЬ)0)1
-//		if ((*it)-> life == true)
-//		for (it = enemies.begin(); it != enemies.end();)//говорим что проходимся от начала до конца
-//				{
-//			if ((*it)->getRect().intersects(enemies.getRect())){
-//				enemies.health = 0;
-//			}
-//		}
-
-
 	//Проверка пересечения игрока с врагами_Если пересечение произошло, то "health = 0", игрок обездвижевается и выводится сообщение "you are lose"
 	if (p.life == true){//если игрок жив
 		for (it = enemies.begin(); it != enemies.end(); it++){//бежим по списку врагов
@@ -498,7 +507,6 @@ while (window.isOpen())
 				}
 			}
 		}
-
 
 		window.clear();
 
@@ -513,7 +521,7 @@ for (int i = 0; i < HEIGHT_MAP; i++)
 
 		s_map.setPosition(j * 32, i * 32);
 		window.draw(s_map);
-			}
+		}
 
 		//объявили переменную здоровья и времени
 		std::ostringstream playerHealthString, gameTimeString;

@@ -58,7 +58,7 @@ public:
 	Player(Image &image, float X, float Y, int W, int H, std::string Name) :Entity(image, X, Y, W, H, Name){
 		playerScore = 0; 
 		state = stay;
-		if (name == "Player1"){
+		if (name == "Heroy"){
 			//Задаем спрайту один прямоугольник для
 			//вывода одного игрока. IntRect – для приведения типов
 			sprite.setTextureRect(IntRect(0, 0, w, h));
@@ -175,9 +175,9 @@ public:
 		//вывода одного игрока. IntRect – для приведения типов
 		sprite.setTextureRect(IntRect(0, 0, w, h));
 		direction = rand() % (3); //Направление движения врага задаём случайным образом
-			//через генератор случайных чисел
-			speed = 0.1;//даем скорость.этот объект всегда двигается
-			dx = speed;
+		//через генератор случайных чисел
+		speed = 0.1;//даем скорость.этот объект всегда двигается
+		dx = speed;
 		}
 	}
 
@@ -412,12 +412,20 @@ while (window.isOpen())
 		}
 
 		//Проверяем список на наличие "мертвых" пуль и удаляем их
-for (it = Bullets.begin(); it != Bullets.end(); )//говорим что проходимся от начала до конца
+for (it = Bullets.begin(); it != Bullets.end();)//говорим что проходимся от начала до конца
 	{// если этот объект мертв, то удаляем его
 		if ((*it)-> life == false)	{ it = Bullets.erase(it); } 
 			else  it++;//и идем курсором (итератором) к след объекту.		
 	}
 
+		//ОНО НЕ РАБОТАЕТ, НУЖНО ЧТО-ТО СДЕЛАТЬ)0)1
+		if ((*it)-> life == true)
+		for (it = enemies.begin(); it != enemies.end();)//говорим что проходимся от начала до конца
+				{
+			if ((*it)->getRect().intersects(enemies.getRect())){
+				enemies.health = 0;
+			}
+		}
 
 	//Проверка пересечения игрока с врагами
 	//Если пересечение произошло, то "health = 0", игрок обездвижевается и 

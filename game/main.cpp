@@ -363,14 +363,16 @@ void menu(RenderWindow & window) {
 
 //рестартыч игры
 bool isGameStart() {
+	
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 	sf::RenderWindow window(sf::VideoMode(800, 600, desktop.bitsPerPixel), "Skeleton");
-	menu(window);
+
+	menu(window); //menu
 
 	Font font;//шрифт 
 	font.loadFromFile("ttf/CyrilicOld.ttf");//передаем нашему шрифту файл шрифта
 	Text text("", font, 20);//создаем объект текст
-	text.setColor(Color::Red);//покрасили текст в красный	text.setStyle(Text::Bold);//жирный текст.
+	text.setColor(Color::Yellow);//покрасили текст в Yellow	text.setStyle(Text::Bold);//жирный текст.
 
 	//на звукичах
 	SoundBuffer shootBuffer;//создаём буфер для звука
@@ -472,32 +474,6 @@ while (window.isOpen())
 
 		p.update(time); //оживляем объект “p” класса “Player” 
 
-
-
-		for (it = entities.begin(); it != entities.end();)//говорим что проходимся от начала до конца
-		{
-			Entity *b = *it;//для удобства, чтобы не писать (*it)->
-			b->update(time);//вызываем ф-цию update для всех объектов (по сути для тех, кто жив)
-			if (b->life == false)	{ it = entities.erase(it); delete b; }// если этот объект мертв, то удаляем его
-			else it++;//и идем курсором (итератором) к след объекту. так делаем со всеми объектами списка
-		}
-
-		//взаимодействие
-		for (it = entities.begin(); it != entities.end(); it++)//проходимся по эл-там списка
-		{
-			if ((*it)->getRect().intersects(p.getRect()))//если прямоугольник спрайта объекта пересекается с игроком
-			{
-				if ((*it)->name == "EasyEnemy"){//и при этом имя объекта EasyEnemy,то..
-					if (p.dy>0) { (*it)->dx = 0; p.dy = -0.2; (*it)->health = 0; }//если прыгнули на врага,то даем врагу скорость 0,отпрыгиваем от него чуть вверх,даем ему здоровье 0
-					else {
-						p.health -= 5;	//иначе враг подошел к нам сбоку и нанес урон
-					}
-				}
-			}
-		}
-
-
-
 		//оживляем врагов
 		for (it = enemies.begin(); it != enemies.end(); it++)
 		{
@@ -511,11 +487,12 @@ while (window.isOpen())
 		}
 
 		//Проверяем список на наличие "мертвых" пуль и удаляем их
-	for (it = Bullets.begin(); it != Bullets.end();)//говорим что проходимся от начала до конца
-	{// если этот объект мертв, то удаляем его
+		for (it = Bullets.begin(); it != Bullets.end();)//говорим что проходимся от начала до конца
+		{// если этот объект мертв, то удаляем его
 		if ((*it)-> life == false)	{ it = Bullets.erase(it); } 
 			else  it++;//и идем курсором (итератором) к след объекту.		
-	}
+			
+		}
 
 	//Проверка пересечения игрока с врагами_Если пересечение произошло, то "health = 0", игрок обездвижевается и выводится сообщение "you are lose"
 	if (p.life == true){//если игрок жив
@@ -531,6 +508,42 @@ while (window.isOpen())
 				}
 			}
 		}
+
+
+	
+		for (it = entities.begin(); it != entities.end();)//говорим что проходимся от начала до конца
+		{
+			Entity *b = *it;//для удобства, чтобы не писать (*it)->
+			b->update(time);//вызываем ф-цию update для всех объектов (по сути для тех, кто жив)
+			if (b->life == false)	{ it = entities.erase(it); delete b; }// если этот объект мертв, то удаляем его
+			else it++;//и идем курсором (итератором) к след объекту. так делаем со всеми объектами списка
+		}
+
+		//взаимодействие
+		for (it = entities.begin(); it != entities.end(); it++)//проходимся по эл-там списка
+		{
+			if ((*it)->name == "EasyEnemy")
+			{
+				Entity *enemy = *it;
+				for (std::list<Entity*>::iterator it2 = entities.begin(); it2 != entities.end(); it2++)
+				{
+					Entity *bullet = *it2;
+					if (bullet->name == "Bullet")
+						if (bullet->life == true)
+						{
+							if (bullet->getRect().intersects(enemy->getRect()))
+							{
+								bullet->life = false;
+								enemy->life = false;
+							}
+						}
+				}
+			}
+		}
+
+
+
+
 		window.clear();
 
 /////////////////////////////Рисуем карту/////////////////////

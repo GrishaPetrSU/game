@@ -103,6 +103,10 @@ void checkCollisionWithMap(float Dx, float Dy)	{
 					health += 20;//если взяли сердечко
 					TileMap[i][j] = ' ';//убрали сердечко
 				}
+				if (TileMap[i][j] == 'c') {
+					crystal += 1;;//если взяли кристалл
+					TileMap[i][j] = ' ';//убрали кристалл
+				}
 
 			}
 	}
@@ -117,28 +121,28 @@ void update(float time) //метод "оживления/обновления" объекта класса.
 			dx = speed;
 			CurrentFrame += 0.005*time;
 			if (CurrentFrame > 3) CurrentFrame -= 3;
-			sprite.setTextureRect(IntRect(96 * int(CurrentFrame), 192, 96, 96));
+			sprite.setTextureRect(IntRect(40 * int(CurrentFrame), 150, 40, 75));
 				break;
 			}
 		case left:{//состояние идти влево
 			dx = -speed;
 			CurrentFrame += 0.005*time;
 			if (CurrentFrame > 3) CurrentFrame -= 3;
-			sprite.setTextureRect(IntRect(96 * int(CurrentFrame), 96, 96, 96));
+			sprite.setTextureRect(IntRect(40 * int(CurrentFrame), 75, 40, 75));
 			break;
 			}
 		case up:{//идти вверх
 			dy = -speed;
 			CurrentFrame += 0.005*time;
 			if (CurrentFrame > 3) CurrentFrame -= 3;
-			sprite.setTextureRect(IntRect(96 * int(CurrentFrame), 288, 96, 96));
+			sprite.setTextureRect(IntRect(40 * int(CurrentFrame), 225, 40, 75));
 			break;
 			}
 		case down:{//идти вниз
 			dy = speed;
 			CurrentFrame += 0.005*time;
 			if (CurrentFrame > 3) CurrentFrame -= 3;
-			sprite.setTextureRect(IntRect(96 * int(CurrentFrame), 0, 96, 96));
+			sprite.setTextureRect(IntRect(40 * int(CurrentFrame), 0, 40, 75));
 			break;
 			}
 		case stay:{//стоим
@@ -332,10 +336,10 @@ int main()
 	Clock clock;
 	Clock gameTimeClock;//переменная игрового времени, будем здесь хранить время игры 
 	int gameTime = 0;//объявили игровое время, инициализировали.
-
+	int crystal = 0;
 
 	Image heroImage;
-	heroImage.loadFromFile("images/hero.png"); // загружаем изображение игрока
+	heroImage.loadFromFile("images/hero1.png"); // загружаем изображение игрока
 
 	Image easyEnemyImage;
 	easyEnemyImage.loadFromFile("images/skel.png"); // загружаем изображение врага
@@ -344,7 +348,7 @@ int main()
 	BulletImage.loadFromFile("images/bullet.png");//загрузили картинку в объект изображения
 
 
-	Player p(heroImage, 100, 170, 96, 96, "Player1");//объект класса игрока
+	Player p(heroImage, 100, 170, 40, 75, "Player1");//объект класса игрока
 
 	std::list<Entity*>  enemies; //список врагов
 	std::list<Entity*>  Bullets; //список пуль
@@ -450,10 +454,10 @@ for (int i = 0; i < HEIGHT_MAP; i++)
 			}
 
 		//объявили переменную здоровья и времени
-		std::ostringstream playerHealthString, gameTimeString;
+		std::ostringstream playerHealthString, gameTimeString, crystalString;
 
-		playerHealthString << p.health; gameTimeString << gameTime;//формируем строку
-		text.setString("Здоровье: " + playerHealthString.str() + "\nВремя игры: " + gameTimeString.str());//задаем строку тексту
+		playerHealthString << p.health; gameTimeString << gameTime; crystalString << crystal; //формируем строку
+		text.setString("Здоровье: " + playerHealthString.str() + "\nВремя игры: " + gameTimeString.str() + "\nКоличество кристаллов: " + crystalString.str());//задаем строку тексту
 		text.setPosition(50, 50);//задаем позицию текста
 		window.draw(text);//рисуем этот текст
 

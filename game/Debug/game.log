@@ -1,8 +1,6 @@
-﻿Построение начато 19.12.2018 22:22:52.
+﻿Построение начато 19.12.2018 23:45:55.
      1>Проект "C:\Mashka\1\game\game\game.vcxproj" в узле 2 (целевые объекты build).
-     1>PrepareForBuild:
-         Создание каталога "C:\Mashka\1\game\Debug\".
-       InitializeBuildStatus:
+     1>InitializeBuildStatus:
          Создание "Debug\game.unsuccessfulbuild", так как было задано "AlwaysCreate".
        ClCompile:
          C:\Mashka\Programms\MSVS  express\VC\bin\CL.exe /c /I"C:\Mashka\SFML\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /Od /Oy- /D SFML_DYNAMIC /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -19,37 +17,37 @@
      1>c:\mashka\1\game\game\main.cpp(97): warning C4244: =: преобразование "int" в "float", возможна потеря данных
      1>c:\mashka\1\game\game\main.cpp(98): warning C4244: =: преобразование "int" в "float", возможна потеря данных
      1>c:\mashka\1\game\game\main.cpp(99): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(118): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(125): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(132): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(139): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(179): warning C4305: =: усечение из "double" к "float"
-     1>c:\mashka\1\game\game\main.cpp(186): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(187): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(192): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(192): warning C4305: =: усечение из "double" к "float"
+     1>c:\mashka\1\game\game\main.cpp(122): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(129): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(136): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(143): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(183): warning C4305: =: усечение из "double" к "float"
+     1>c:\mashka\1\game\game\main.cpp(190): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(191): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
      1>c:\mashka\1\game\game\main.cpp(196): warning C4244: =: преобразование "int" в "float", возможна потеря данных
      1>c:\mashka\1\game\game\main.cpp(196): warning C4305: =: усечение из "double" к "float"
      1>c:\mashka\1\game\game\main.cpp(200): warning C4244: =: преобразование "int" в "float", возможна потеря данных
      1>c:\mashka\1\game\game\main.cpp(200): warning C4305: =: усечение из "double" к "float"
      1>c:\mashka\1\game\game\main.cpp(204): warning C4244: =: преобразование "int" в "float", возможна потеря данных
      1>c:\mashka\1\game\game\main.cpp(204): warning C4305: =: усечение из "double" к "float"
-     1>c:\mashka\1\game\game\main.cpp(220): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(227): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(234): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(241): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(273): warning C4305: =: усечение из "double" к "float"
-     1>c:\mashka\1\game\game\main.cpp(301): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(302): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(308): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(308): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(359): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(360): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(371): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(373): warning C4244: =: преобразование "float" в "int", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(380): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(448): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-     1>c:\mashka\1\game\game\main.cpp(448): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(208): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(208): warning C4305: =: усечение из "double" к "float"
+     1>c:\mashka\1\game\game\main.cpp(224): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(231): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(238): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(245): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(277): warning C4305: =: усечение из "double" к "float"
+     1>c:\mashka\1\game\game\main.cpp(305): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(306): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(312): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(312): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(363): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(364): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(375): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(377): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(384): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(452): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+     1>c:\mashka\1\game\game\main.cpp(452): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
        Link:
          C:\Mashka\Programms\MSVS  express\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Mashka\1\game\Debug\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Mashka\SFML\SFML-2.3.2\lib" "sfml-audio-d.lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Mashka\1\game\Debug\game.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Mashka\1\game\Debug\game.lib" /MACHINE:X86 Debug\main.obj
      1>main.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/INCREMENTAL:NO"
@@ -63,4 +61,4 @@
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:07.62
+Затраченное время: 00:00:02.82

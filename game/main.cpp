@@ -1,6 +1,7 @@
 #include <iostream> 
 #include <sstream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "map.h" //подключили код с картой
 
 #include <list>
@@ -58,7 +59,7 @@ public:
 	Player(Image &image, float X, float Y, int W, int H, std::string Name) :Entity(image, X, Y, W, H, Name){
 		playerScore = 0; 
 		state = stay;
-		if (name == "Heroy"){
+		if (name == "Hero"){
 			//Задаем спрайту один прямоугольник для
 			//вывода одного игрока. IntRect – для приведения типов
 			sprite.setTextureRect(IntRect(0, 0, w, h));
@@ -318,9 +319,23 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(800, 640, desktop.bitsPerPixel), "Skeleton");
 
 	Font font;//шрифт 
-	font.loadFromFile("CyrilicOld.ttf");//передаем нашему шрифту файл шрифта
+	font.loadFromFile("ttf/CyrilicOld.ttf");//передаем нашему шрифту файл шрифта
 	Text text("", font, 20);//создаем объект текст
 	text.setColor(Color::Red);//покрасили текст в красный	text.setStyle(Text::Bold);//жирный текст.
+
+	//на звукичах
+	SoundBuffer shootBuffer;//создаём буфер для звука
+	shootBuffer.loadFromFile("audio/shoot.ogg");//загружаем в него звук
+	Sound shoot(shootBuffer);//создаем звук и загружаем в него звук из буфера
+
+	SoundBuffer stepsBuffer;//создаём буфер для звука
+	stepsBuffer.loadFromFile("audio/steps.ogg");//загружаем в него звук
+	Sound steps(stepsBuffer);//создаем звук и загружаем в него звук из буфера
+
+	Music music;//создаем объект музыки
+	music.openFromFile("audio/music.ogg");//загружаем файл
+	music.play();//воспроизводим музыку
+	music.setLoop(true);
 
 	Image map_image;//объект изображения для карты
 	map_image.loadFromFile("images/map.png");//загружаем файл для карты
@@ -333,7 +348,6 @@ int main()
 	Clock gameTimeClock;//переменная игрового времени, будем здесь хранить время игры 
 	int gameTime = 0;//объявили игровое время, инициализировали.
 
-
 	Image heroImage;
 	heroImage.loadFromFile("images/hero.png"); // загружаем изображение игрока
 
@@ -342,7 +356,6 @@ int main()
 
 	Image BulletImage;//изображение для пули
 	BulletImage.loadFromFile("images/bullet.png");//загрузили картинку в объект изображения
-
 
 	Player p(heroImage, 100, 170, 96, 96, "Player1");//объект класса игрока
 
@@ -371,15 +384,13 @@ while (window.isOpen())
 	float time = clock.getElapsedTime().asMicroseconds();
 
 	if (p.life) gameTime = gameTimeClock.getElapsedTime().asSeconds();//игровое время в 
-		//секундах идёт вперед, пока жив игрок. Перезагружать как time его не надо. 
-		//оно не обновляет логику игры
+		//секундах идёт вперед, пока жив игрок. Перезагружать как time его не надо. оно не обновляет логику игры
 
 		clock.restart();
 		time = time / 1000;
 
 		createObjectForMapTimer += time;//наращиваем таймер
 		
-
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -391,7 +402,8 @@ while (window.isOpen())
 			{
 				if (event.key.code == sf::Keyboard::P)
 				{
-		Bullets.push_back(new Bullet(BulletImage, p.x, p.y, 16, 16, "Bullet", p.state));
+					Bullets.push_back(new Bullet(BulletImage, p.x, p.y, 16, 16, "Bullet", p.state));
+					shoot.play();//играем звук пули
 				}
 			}
 		}
@@ -412,24 +424,24 @@ while (window.isOpen())
 		}
 
 		//Проверяем список на наличие "мертвых" пуль и удаляем их
-for (it = Bullets.begin(); it != Bullets.end();)//говорим что проходимся от начала до конца
+	for (it = Bullets.begin(); it != Bullets.end();)//говорим что проходимся от начала до конца
 	{// если этот объект мертв, то удаляем его
 		if ((*it)-> life == false)	{ it = Bullets.erase(it); } 
 			else  it++;//и идем курсором (итератором) к след объекту.		
 	}
 
-		//ОНО НЕ РАБОТАЕТ, НУЖНО ЧТО-ТО СДЕЛАТЬ)0)1
-		if ((*it)-> life == true)
-		for (it = enemies.begin(); it != enemies.end();)//говорим что проходимся от начала до конца
-				{
-			if ((*it)->getRect().intersects(enemies.getRect())){
-				enemies.health = 0;
-			}
-		}
 
-	//Проверка пересечения игрока с врагами
-	//Если пересечение произошло, то "health = 0", игрок обездвижевается и 
-	//выводится сообщение "you are lose"
+//		//ОНО НЕ РАБОТАЕТ, НУЖНО ЧТО-ТО СДЕЛАТЬ)0)1
+//		if ((*it)-> life == true)
+//		for (it = enemies.begin(); it != enemies.end();)//говорим что проходимся от начала до конца
+//				{
+//			if ((*it)->getRect().intersects(enemies.getRect())){
+//				enemies.health = 0;
+//			}
+//		}
+
+
+	//Проверка пересечения игрока с врагами_Если пересечение произошло, то "health = 0", игрок обездвижевается и выводится сообщение "you are lose"
 	if (p.life == true){//если игрок жив
 		for (it = enemies.begin(); it != enemies.end(); it++){//бежим по списку врагов
 		if ((p.getRect().intersects((*it)->getRect())) && ((*it)->name == "EasyEnemy"))
@@ -450,7 +462,6 @@ for (int i = 0; i < HEIGHT_MAP; i++)
 	if (TileMap[i][j] == ' ')  s_map.setTextureRect(IntRect(0, 0, 32, 32));
 	if (TileMap[i][j] == 'c')  s_map.setTextureRect(IntRect(96, 0, 32, 32));
 	if ((TileMap[i][j] == '0')) s_map.setTextureRect(IntRect(64, 0, 32, 32));
-//	if ((TileMap[i][j] == 'f')) s_map.setTextureRect(IntRect(96, 0, 32, 32));//цветок
 	if ((TileMap[i][j] == 'h')) s_map.setTextureRect(IntRect(128, 0, 32, 32));//сердце
 
 		s_map.setPosition(j * 32, i * 32);

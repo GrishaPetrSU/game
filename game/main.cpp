@@ -355,9 +355,8 @@ void menu(RenderWindow & window) {
 	////////////////////////////////////////////////////
 }
 
-
-int main()
-{
+//рестартыч игры
+bool isGameStart() {
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 	sf::RenderWindow window(sf::VideoMode(800, 600, desktop.bitsPerPixel), "Skeleton");
 	menu(window);
@@ -452,6 +451,10 @@ while (window.isOpen())
 			}
 		}
 
+		//game restart
+		if (Keyboard::isKeyPressed(Keyboard::Tab)) { return true; }//если таб, то перезагружаем игру
+		if (Keyboard::isKeyPressed(Keyboard::Escape)) { return false; }//если эскейп, то выходим из игры
+
 		p.update(time); //оживл€ем объект УpФ класса УPlayerФ 
 
 		for (it = enemies.begin(); it != enemies.end();)//говорим что проходимс€ от начала до конца
@@ -504,10 +507,10 @@ while (window.isOpen())
 				{
 					p.health = 0;
 					std::cout << "you are lose";
+					menu(window);
 				}
 			}
 		}
-
 		window.clear();
 
 /////////////////////////////–исуем карту/////////////////////
@@ -549,5 +552,14 @@ for (int i = 0; i < HEIGHT_MAP; i++)
 
 		window.display();
 	}
+};
+
+void gameRunning(){//ф-ци€ перезагружает игру , если это необходимо
+	if (isGameStart()) { gameRunning(); }////если startGame() == true, то вызываем занова ф-цию isGameRunning, котора€ в свою очередь оп€ть вызывает startGame() 
+}
+
+int main()
+{
+	gameRunning();//запускаем процесс игры
 	return 0;
 }

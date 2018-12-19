@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Построение начато 19.12.2018 23:45:55.
      1>Проект "C:\Mashka\1\game\game\game.vcxproj" в узле 2 (целевые объекты build).
      1>InitializeBuildStatus:
@@ -62,3 +63,50 @@
 Построение успешно завершено.
 
 Затраченное время: 00:00:02.82
+=======
+﻿Построение начато 13.12.2018 16:47:32.
+     1>Проект "C:\Users\21316\Kulakova\game\game\game.vcxproj" в узле 2 (целевые объекты build).
+     1>InitializeBuildStatus:
+         Обращение к "Debug\game.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\21316\Kulakova\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /Od /Oy- /D SFML_DYNAMIC /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\21316\kulakova\game\game\main.cpp(41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(72): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(76): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(81): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(86): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(92): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(93): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(97): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(98): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(99): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(100): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(123): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(130): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(137): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(144): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(184): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(191): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(192): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(197): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(197): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(201): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(201): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(205): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(205): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(209): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(209): warning C4305: =: усечение из "double" к "float"
+     1>c:\users\21316\kulakova\game\game\main.cpp(225): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(232): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(239): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(246): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+     1>c:\users\21316\kulakova\game\game\main.cpp(271): error C2590: Enemy: список инициализации базовых классов и членов может быть только в конструкторе
+     1>c:\users\21316\kulakova\game\game\main.cpp(599): fatal error C1075: конец файла обнаружен ранее, чем левая фигурная скобка "{" в "c:\users\21316\kulakova\game\game\main.cpp(268)"
+     1>Построение проекта "C:\Users\21316\Kulakova\game\game\game.vcxproj" завершено (целевые объекты build) с ошибкой.
+
+СБОЙ построения.
+
+Затраченное время: 00:00:02.14
+>>>>>>> 669c3d8e9f0a5677f4ed065bf1f0428de82bd949
